@@ -1,78 +1,40 @@
-# React + TypeScript + Vite
+# PokéAPI-klient skrevet i React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dette er en enkel, lettforståelig klient for PokéAPI. Den er riktignok ikke helt komplett, og det er noen ting du må gjøre med den for å få den komplett.
 
-Currently, two official plugins are available:
+## Oppgave 1
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Du skal lage en komponent som heter `<SearchResult>` som skal brukes til å presentere søkeresultatet. Her skal du presentere statistikken som kommer fra APIet på en pen måte. Du skal minst lage props for 
 
-## React Compiler
++ Name
++ Base experience
++ Height
++ Weight
++ Abilities
++ Held items
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Disse propsene skal være riktig typet. Det kan bety at du må lage egne typer for disse. Du skal også komplettere appen med typer der disse mangler, for eksempel i nettverkskallet som gjøres.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Oppgave 2
 
-## Expanding the ESLint configuration
+Dersom en bruker skriver inn navnet på en Pokémon som ikke finnes, må du vise en feilmelding. Denne feilmeldingen skal lages som en komponent, `<SearchError>`, og du skal bruke conditional rendering for å vise denne komponenten når det trengs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Oppgave 3
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Du skal implementere søkehistorikk som tar vare på de tre siste søkene i appen. Dersom brukeren har søkt flere enn tre ganger, skal de gamle søkeordene fjernes fra lista etter behov.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Oppgave 4
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Du skal lage en komponent for visning av bilde av Pokémonen, kalt `<PokemonPhoto>`. Du skal bruke data fra APIet til å velge riktig bilde; du må hente bildet som brukes i det nyeste spillet den gjeldende Pokémonen var med i.
 
-```
+## Oppgave 5
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Du skal, ut fra dataene i APIet, lage en liste over hvilke spill den aktive Pokémonen har vært med i. Denne komponenten skal hete `<GamesList>` og skal kun brukes til presentasjon, ikke filtrering. Du må derfor filtrere dataene FØR de sendes inn i komponenten. Hvorfor tror du dette er et krav til komponenten?
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Oppgave 6
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Du skal implementere en knapp ved siden av Pokémonens abilities. Når brukeren trykker på knappen, skal appen din hente en liste over andre Pokémon som har samme ability. Navnene på lista skal implementeres slik at når man trykker på dem, søker appen opp den gjeldende Pokémonen i stedet for den som vises nå. Dette skal gjøres ved å gjøre et nytt nettverkskall.
 
-```
+## Oppgave 7
+
+Ut fra dataene i som kommer i API-forespørselen skal du nå lage en TypeScript-type kalt `PokeAPIResponse`. Denne typen skal legges i sin egen fil, og du skal så importere typen inn i appen din og bruke den til å type responsen fra APIet på riktig måte.
