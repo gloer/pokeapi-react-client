@@ -2,8 +2,12 @@ type Results = {
     name: string;
     base_experience: number;
     height: number;
-    weight: number;    
-}
+    weight: number;
+};
+
+type SearchResultsProps = {
+    results: Results;
+};
 
 /*
 Name
@@ -14,9 +18,8 @@ Abilities
 Held items
 */
 
-export default function SearchResults(results: unknown) {
-    const data:Results = results.results;
-    const {name, base_experience, height, weight} = data;
+export default function SearchResults({results} : SearchResultsProps ) {    
+    const {name, base_experience, height, weight} = results;
     return (
         <article>
             <p>Name: {name}</p>
