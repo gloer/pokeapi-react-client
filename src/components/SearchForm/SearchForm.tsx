@@ -15,7 +15,7 @@ export default function SearchForm() {
       console.log(response.status);
       setResults(null);      
     } else {
-      const data = await response.json();
+      const data = await response.json();      
       setResults(data);
     }
   }
